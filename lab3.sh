@@ -2,17 +2,18 @@
 
 USR=$(whoami)
 if [ ${UID} -eq 0 ]; then
-   echo "User is ${USR}, you do not have permission."
+   echo "You are ${USR}, you do not have permission."
    exit
-elif [ ${UID} -lt 500 ]; then
+elif [ ${UID} -lt 500 ] || [ ${UID} -eq 500 ]; then
    echo "You are ${USR}, you do not have permission."
    exit 
 else
    echo "${USR} your UID is ${UID}"
-   echo "$(grep "${USR}" /etc/passwd | cut -d':' -f6,6)"
    if [[ -r /etc/passwd ]]; then
    echo "/etc/passwd is found"
-   echo "$(grep "${USR}" /etc/passwd | cut -d':' -f6,6)"
+   HDIR=$(grep "${USR}" /etc/passwd | cut -d':' -f6,6)
+   echo "${HDIR}"
+   du -h ${HDIR}   
    else 
    echo "/etc/passwd is not found"
    fi
