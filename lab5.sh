@@ -3,8 +3,8 @@ LOC=/root/medialab/
 FILE=medialist.txt
 touch lostfiles.txt
 touch foundfiles.txt
-echo "" > ${LCO}lostfiles.txt
-echo "" > ${LOC}foundfiles.txt
+echo "Files that are lost" > ${LOC}lostfiles.txt
+echo "Files that are found" > ${LOC}foundfiles.txt
 while read p; do
    if [[ $(ls -la ${LOC} | grep "${p}" | wc -l) -eq 0 ]]; then
    	echo "${p}" >> ${LOC}lostfiles.txt
