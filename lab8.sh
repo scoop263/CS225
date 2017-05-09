@@ -1,18 +1,29 @@
 # !/bin/bash
-FILENAME=/var/share/CS225/addresses.csv
-OPERATION="tail -1 ${FILENAME}"
-FNAME=$($OPERATION | cut -d'"' -f2)
-LNAME=$($OPERATION | cut -d'"' -f4)
-COMPANY=$($OPERATION | cut -d'"' -f6)
-STREET=$($OPERATION | cut -d'"' -f8)
-CITY=$($OPERATION | cut -d'"' -f10)
-STATE=$($OPERATION | cut -d'"' -f12)
-STATEABR=$($OPERATION | cut -d'"' -f14)
-ZIP=$($OPERATION | cut -d'"' -f16)
-HPHONE=$($OPERATION | cut -d'"' -f18)
-WPHONE=$($OPERATION | cut -d'"' -f20)
-EMAIL=$($OPERATION | cut -d'"' -f22)
-WEBURL=$($OPERATION | cut -d'"' -f24)
+LLINE=$(tail -1 /var/share/CS225/addresses.csv)
+LLINE=${LLINE//'"'/' '}
+FNAME=${LLINE%%,*}
+LLINE=${LLINE#*,}
+LNAME=${LLINE%%,*}
+LLINE=${LLINE#*,}
+COMPANY=${LLINE%%,*}
+LLINE=${LLINE#*,}
+STREET=${LLINE%%,*}
+LLINE=${LLINE#*,}
+CITY=${LLINE%%,*}
+LLINE=${LLINE#*,}
+STATE=${LLINE%%,*}
+LLINE=${LLINE#*,}
+STATEABR=${LLINE%%,*}
+LLINE=${LLINE#*,}
+ZIP=${LLINE%%,*}
+LLINE=${LLINE#*,}
+HPHONE=${LLINE%%,*}
+LLINE=${LLINE#*,}
+WPHONE=${LLINE%%,*}
+LLINE=${LLINE#*,}
+EMAIL=${LLINE%%,*}
+LLINE=${LLINE#*,}
+WEBURL=${LLINE%%,*}
 echo ${FNAME,,}
 echo ${LNAME,,}
 echo ${COMPANY,,}
@@ -25,4 +36,3 @@ echo ${HPHONE,,}
 echo ${WPHONE,,}
 echo ${EMAIL,,}
 echo ${WEBURL,,}
-
