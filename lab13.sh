@@ -73,7 +73,7 @@ isIP(){
 	IPADDR=$1
 	COUNTER=1
 	WRONG="NOT A VALID IP ADDRESS"
-	# The IPADDR contains mulple .'s so using delimter to isol
+	# The IPADDR contains mulple .'s so using delimter check each field of the input
 	while [[ $COUNTER -lt 5 ]]; do
 		if [[ $(echo $IPADDR | cut -d'.' -f${COUNTER},${COUNTER}) -lt 256 ]]; then
 			if [[ -z $(echo $IPADDR | cut -d'.' -f${COUNTER},${COUNTER}) ]]; then
