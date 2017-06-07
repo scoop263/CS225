@@ -31,7 +31,7 @@ isEMAIL(){
 	#two parts of email address can only be 64 or 254 length depending on what side @ is
 		if [[ ${#LOCAL} -lt 65 ]] && [[ ${#DOMAIN} -lt 255 ]]; then
 			# Local can have any punctuation or numeric/ alpha. Domain cannot have that only numeric/alpha/ or hyphen
-			if [[ ${LOCAL} =~ [[:punct:][:alnum:]] ]] && [[ ${DOMAIN} =~ [-[:alnum:]] ]]; then
+			if [[ ${LOCAL} = [\!'#'\$%\&\'\*\+\-/\=\?\^_\`'{''}'~[:alnum:]]* ]] && [[ ${DOMAIN} =~ [-.[:alnum:]]* ]]; then
 				# at the beginning and ending of domain it cannot have a hyphen
 				if [ ${DOMAIN:0:1} == "-" ] || [[ ${DOMAIN:${NUMDOM}:${#DOMAIN}} == "-" ]]; then
 					echo $WRONG
@@ -73,7 +73,7 @@ isIP(){
 	IPADDR=$1
 	COUNTER=1
 	WRONG="NOT A VALID IP ADDRESS"
-	# The IPADDR contains mulple .'s so using delimter check each field of the input
+	# The IPADDR contains mulple '.' so using delimter check each field of the input
 	while [[ $COUNTER -lt 5 ]]; do
 		if [[ $(echo $IPADDR | cut -d'.' -f${COUNTER},${COUNTER}) -lt 256 ]]; then
 			if [[ -z $(echo $IPADDR | cut -d'.' -f${COUNTER},${COUNTER}) ]]; then
